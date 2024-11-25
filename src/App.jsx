@@ -1,15 +1,19 @@
+import { useState } from 'react';
 import Navbar from "./components/Navbar";
-import Home from "./components/Home"; 
+import Register from "./components/Register";
+import Login from "./components/Login";
 import Footer from "./components/Footer";
 
-function App() {
+const App = () => {
+  const [currentView, setCurrentView] = useState('register');
+
   return (
-    <div>
-      <Navbar />
-      <Home />
+    <div className="App">
+      <Navbar currentView={currentView} setCurrentView={setCurrentView} />
+      {currentView === 'register' ? <Register /> : <Login />}
       <Footer />
     </div>
   );
-}
+};
 
 export default App;
