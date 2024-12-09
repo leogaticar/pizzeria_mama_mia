@@ -1,14 +1,14 @@
 import Cart from "./components/Cart";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
-// import Home from "./components/Home";
+import Home from "./components/Home";
 // import LoginPage from "./components/Login";
 // import RegisterPage from "./components/Register";
 const App = () => {
 return (
 <div>
 <Navbar />
-{/* <Home /> */}
+<Home />
 {/* <RegisterPage /> */}
 {/* <LoginPage /> */}
 <Cart />
