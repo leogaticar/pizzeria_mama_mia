@@ -1,6 +1,9 @@
 import { Link } from 'react-router-dom';
+import { useCart } from '../context/CartContext';
 
 const Navbar = () => {
+  const { getTotal } = useCart();
+
   return (
     <nav style={{ 
       backgroundColor: '#ef4444', 
@@ -31,7 +34,7 @@ const Navbar = () => {
               padding: '0.5rem 1rem',
               borderRadius: '0.5rem'
             }}>
-              🛒 Total: $0
+              🛒 Total: ${getTotal().toLocaleString()}
             </span>
           </Link>
         </div>

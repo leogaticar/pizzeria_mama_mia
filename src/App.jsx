@@ -8,35 +8,38 @@ import Cart from "./pages/Cart";
 import Pizza from "./pages/Pizza";
 import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
+import { CartProvider } from "./context/CartContext";
 
 const App = () => {
   return (
     <BrowserRouter>
-      <div style={{ 
-        minHeight: '100vh',
-        display: 'flex',
-        flexDirection: 'column'
-      }}>
-        <Navbar />
-        <main style={{
-          flex: '1',
-          maxWidth: '1280px',
-          margin: '0 auto',
-          padding: '2rem',
-          width: '100%'
+      <CartProvider>
+        <div style={{ 
+          minHeight: '100vh',
+          display: 'flex',
+          flexDirection: 'column'
         }}>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/pizza/:id" element={<Pizza />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </main>
-        <Footer />
-      </div>
+          <Navbar />
+          <main style={{
+            flex: '1',
+            maxWidth: '1280px',
+            margin: '0 auto',
+            padding: '2rem',
+            width: '100%'
+          }}>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/cart" element={<Cart />} />
+              <Route path="/pizza/:id" element={<Pizza />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </main>
+          <Footer />
+        </div>
+      </CartProvider>
     </BrowserRouter>
   );
 };

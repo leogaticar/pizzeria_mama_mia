@@ -1,22 +1,7 @@
-import { useState } from "react";
-import { pizzaCart } from "../pizzas";
+import { useCart } from '../context/CartContext';
 
 const Cart = () => {
-  const [cart, setCart] = useState(pizzaCart);
-
-  const handleIncrement = (id) => {
-    setCart(cart.map(item => 
-      item.id === id ? {...item, count: item.count + 1} : item
-    ));
-  };
-
-  const handleDecrement = (id) => {
-    setCart(cart.map(item => 
-      item.id === id && item.count > 0 ? {...item, count: item.count - 1} : item
-    ).filter(item => item.count > 0));
-  };
-
-  const total = cart.reduce((sum, item) => sum + (item.price * item.count), 0);
+  const { cart, addToCart, removeFromCart, getTotal } = useCart();
 
   return (
     <div className="container mt-5">
@@ -29,13 +14,13 @@ const Cart = () => {
             <p>${item.price.toLocaleString()}</p>
           </div>
           <div className="ms-auto d-flex align-items-center">
-            <button className="btn btn-outline-danger" onClick={() => handleDecrement(item.id)}>-</button>
+            <button className="btn btn-outline-danger" onClick={() => removeFromCart(item.id)}>-</button>
             <span className="mx-3">{item.count}</span>
-            <button className="btn btn-outline-primary" onClick={() => handleIncrement(item.id)}>+</button>
+            <button className="btn btn-outline-primary" onClick={() => addToCart(item)}>+</button>
           </div>
         </div>
       ))}
-      <h3 className="mt-4">Total: ${total.toLocaleString()}</h3>
+      <h3 className="mt-4">Total: ${getTotal().toLocaleString()}</h3>
       <button className="btn btn-dark mt-3">Pagar</button>
     </div>
   );

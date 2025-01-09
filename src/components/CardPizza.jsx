@@ -1,4 +1,19 @@
-const CardPizza = ({ name, price, ingredients, img, desc }) => {
+import { useCart } from '../context/CartContext';
+
+const CardPizza = ({ id, name, price, ingredients, img, desc }) => {
+  const { addToCart } = useCart();
+
+  const handleAddToCart = () => {
+    addToCart({
+      id,
+      name,
+      price,
+      img,
+      desc,
+      ingredients
+    });
+  };
+
   return (
     <div className="col-12 col-md-4 mb-4">
       <div className="card">
@@ -15,7 +30,7 @@ const CardPizza = ({ name, price, ingredients, img, desc }) => {
           <p className="text-center fw-bold">Precio: ${price.toLocaleString()}</p>
           <div className="d-flex justify-content-between">
             <button className="btn btn-primary">Ver Más</button>
-            <button className="btn btn-danger">Añadir</button>
+            <button className="btn btn-danger" onClick={handleAddToCart}>Añadir</button>
           </div>
         </div>
       </div>
